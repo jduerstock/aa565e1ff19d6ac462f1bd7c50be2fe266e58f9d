@@ -3809,7 +3809,7 @@ sub_10007770:
 	rts
 
 sub_1000797a:
-	.byte	0x60,0x00,0x2a,0x10
+	braw	sub_1000a38c
 
 sub_1000797e:
 	braw	sub_1000a444
