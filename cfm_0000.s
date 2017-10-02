@@ -44,7 +44,7 @@ off_1000004e:
 	jmp	%pc@(FragGetClosureInfo)
 	jmp	%pc@(FragGetContextInfo)
 	jmp	%pc@(FragResolveSymbol)
-	jmp	%pc@(sub_10001bd4)
+	jmp	%pc@(FragGetMemRegistryInfo)
 	jmp	%pc@(sub_10001ab4)
 	jmp	%pc@(sub_10001a40)
 	jmp	%pc@(sub_100019c6)
@@ -1266,7 +1266,7 @@ sub_10001b30:
 	.byte	0x00,0x4c,0x42,0x40,0x3d,0x40,0x00,0x10,0x4c,0xdf,0x1c,0x18,0x4e,0x5e,0x20,0x5f
 	.byte	0x50,0x4f,0x4e,0xd0
 
-sub_10001bd4:
+FragGetMemRegistryInfo:
 	linkw	%fp,#0
 	subqw	#2,%sp
 	movel	%fp@(12),%sp@-
