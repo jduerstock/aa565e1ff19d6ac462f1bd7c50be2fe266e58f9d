@@ -23,6 +23,10 @@
 	.short	0xa02a
 .endm
 
+.macro	_BlockMove
+	.short	0xa02e
+.endm
+
 .macro	_SetFPos
 	.short	0xa044
 .endm
@@ -5128,7 +5132,7 @@ sub_10002f4a:
 	lea	%fp@(-16),%a0
 	moveal	%a2,%a1
 	moveq	#12,%d0
-	.short	0xa02e
+	_BlockMove
 	movel	#1667658343,%d0
 	moveal	%a2,%a0
 	.short	0xa3ad
@@ -5647,7 +5651,7 @@ sub_100033fe:
 	lea	%fp@(-32),%a0
 	moveal	%a2,%a1
 	moveq	#26,%d0
-	.short	0xa02e
+	_BlockMove
 	movel	#1667657063,%d0
 	moveal	%a2,%a0
 	.short	0xa3ad
