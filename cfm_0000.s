@@ -1224,7 +1224,7 @@ FragCreateContext:
 	moveq	#8,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-8)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 
 .L100009f2:
@@ -1380,7 +1380,7 @@ FragPrepare:
 	moveq	#44,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-80)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movel	%fp@(36),%d0
 	beqs	.L10000bb4
@@ -3677,7 +3677,7 @@ FragGetAppLocator:
 	moveq	#16,%d0
 	movel	%d0,%sp@-
 	movel	%fp@(12),%sp@-
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movel	%a2@(28),%d3
 	bras	.L100022ce
@@ -3823,7 +3823,7 @@ sub_10002398:
 	moveq	#122,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-132)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movew	%d3,%fp@(-110)
 	lea	%fp@(-132),%a0
@@ -3889,7 +3889,7 @@ sub_10002432:
 	moveq	#122,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-136)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movew	%fp@(-152),%fp@(-114)
 	lea	%fp@(-136),%a0
@@ -3969,7 +3969,7 @@ sub_10002536:
 	moveq	#122,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-132)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movew	%a4@(10),%d0
 	movew	%d0,%fp@(-110)
@@ -7518,7 +7518,7 @@ sub_1000437c:
 	moveq	#20,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-52)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	braw	.L100044f6
 
@@ -7688,7 +7688,7 @@ sub_1000475a:
 	moveq	#44,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-132)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	pea	%fp@(-24)
 	movel	%d5,%sp@-
@@ -8668,7 +8668,7 @@ sub_10004efe:
 	movel	%a2@(16),%d0
 	addl	%fp@(-44),%d0
 	movel	%d0,%sp@-
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 
 .L1000517a:
@@ -8905,7 +8905,7 @@ sub_100053b8:
 	moveq	#36,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-68)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveal	%fp@(8),%a0
 	movel	%a0@(8),%d0
@@ -9346,7 +9346,7 @@ sub_100057aa:
 	unlk	%fp
 	rts
 
-sub_100057dc:
+local_bzero:
 	linkw	%fp,#0
 	moveml	%d3/%a2,%sp@-
 	movel	%fp@(12),%d3
@@ -10777,7 +10777,7 @@ sub_10006388:
 	moveq	#122,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-160)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movew	%a3@,%d0
 	movew	%d0,%fp@(-138)
@@ -10927,7 +10927,7 @@ sub_10006630:
 	moveq	#122,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-232)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movew	%fp@(12),%fp@(-210)
 	lea	%fp@(-232),%a0
@@ -10942,7 +10942,7 @@ sub_10006630:
 	moveq	#108,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-108)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	lea	%fp@(-296),%a0
 	movel	%a0,%fp@(-90)
@@ -11610,7 +11610,7 @@ sub_10006c7a:
 	moveq	#108,%d3
 	movel	%d3,%sp@-
 	pea	%fp@(-112)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movel	%a4@(92),%d0
 	movel	%d0,%fp@(-94)
@@ -11643,7 +11643,7 @@ sub_10006c7a:
 	bnes	.L10006d90
 	movel	%d3,%sp@-
 	pea	%fp@(-112)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	lea	%fp@(-198),%a0
 	movel	%a0,%fp@(-94)
@@ -11912,7 +11912,7 @@ sub_10006da6:
 	moveq	#108,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-204)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveb	%fp@(-87),%d0
 	moveq	#0,%d7
@@ -11993,7 +11993,7 @@ sub_10006da6:
 	moveq	#122,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-328)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movew	%a2@(24),%d0
 	movew	%d0,%fp@(-306)
@@ -12404,7 +12404,7 @@ local_SearchProc:
 	moveq	#108,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-220)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveal	%a4,%a2
 	addqw	#4,%a2
@@ -12429,7 +12429,7 @@ local_SearchProc:
 	moveq	#108,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-220)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveal	%fp@(-320),%a2
 	movew	%a2@,%d0
@@ -12522,7 +12522,7 @@ local_SearchProc:
 	moveq	#108,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-112)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveal	%a3@,%a0
 	movew	%a0@,%d0
@@ -12630,7 +12630,7 @@ sub_10007770:
 	moveq	#24,%d3
 	movel	%d3,%sp@-
 	pea	%fp@(-76)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveal	%fp@(12),%a2
 	movel	%a2@(24),%d0
@@ -12915,7 +12915,7 @@ sub_10007a3a:
 	moveq	#108,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-108)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveal	%a3,%a2
 	moveq	#24,%d0
@@ -13333,7 +13333,7 @@ sub_10007e08:
 	moveq	#20,%d1
 	movel	%d1,%sp@-
 	movel	%fp@(16),%sp@-
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveal	%fp@(12),%a2
 	moveal	%a2@,%a3
@@ -13697,7 +13697,7 @@ sub_1000816a:
 	moveml	%d3-%d6/%a2-%a4,%sp@-
 	movel	#200,%sp@-
 	pea	%fp@(-232)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveal	%fp@(12),%a2
 	movel	%a2@,%d0
@@ -14524,12 +14524,12 @@ sub_10008974:
 	moveq	#38,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-48)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveq	#16,%d0
 	movel	%d0,%sp@-
 	movel	%fp@(46),%sp@-
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movel	%fp@(16),%fp@(-48)
 	movel	%fp@(20),%fp@(-44)
@@ -15084,7 +15084,7 @@ sub_10008ee2:
 	moveq	#78,%d0
 	movel	%d0,%sp@-
 	movel	%a4,%sp@-
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	movel	%fp@(12),%d3
 	movel	%d3,%a4@
@@ -16605,7 +16605,7 @@ sub_10009d02:
 	moveq	#80,%d0
 	movel	%d0,%sp@-
 	pea	%fp@(-80)
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	moveq	#18,%d0
 	movel	%d0,%fp@(-80)
@@ -16829,7 +16829,7 @@ sub_10009ee6:
 	bhis	.L10009f62
 	movel	%d5,%sp@-
 	movel	%a3,%sp@-
-	jsr	%pc@(sub_100057dc)
+	jsr	%pc@(local_bzero)
 	addqw	#8,%sp
 	addal	%d5,%a3
 	bras	.L10009fc0
