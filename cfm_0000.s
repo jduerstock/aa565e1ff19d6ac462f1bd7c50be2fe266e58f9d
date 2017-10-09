@@ -3,6 +3,10 @@
 	.short	0xa002
 .endm
 
+.macro	_GetEOF
+	.short	0xa011
+.endm
+
 .macro	_SetZone
 	.short	0xa01b
 .endm
@@ -14651,7 +14655,7 @@ sub_10008974:
 	subqw	#2,%sp
 	movew	%fp@(-58),%sp@-
 	pea	%fp@(28)
-	jsr	%pc@(sub_1000a3fc)
+	jsr	%pc@(local_geteof)
 	movew	%sp@+,%d0
 	movew	%d0,%fp@(-60)
 	tstw	%d0
@@ -17429,11 +17433,11 @@ sub_1000a3ba:
 	lea	%sp@(14),%sp
 	jmp	%a1@
 
-sub_1000a3fc:
+local_geteof:
 	linkw	%fp,#-50
 	moveal	%sp,%a0
 	movew	%fp@(12),%a0@(24)
-	.short	0xa011
+	_GetEOF
 	movew	%d0,%fp@(14)
 	moveal	%fp@(8),%a1
 	movel	%a0@(28),%a1@
