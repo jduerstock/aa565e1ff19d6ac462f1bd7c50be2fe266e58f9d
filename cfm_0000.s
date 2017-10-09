@@ -11,6 +11,10 @@
 	.short	0xa01f
 .endm
 
+.macro	_GetPtrSize
+	.short	0xa021
+.endm
+
 .macro	_DisposeHandle
 	.short	0xa023
 .endm
@@ -14893,7 +14897,7 @@ sub_10008d1e:
 	moveal	%a0,%a2
 	subqw	#4,%sp
 	movel	%fp@(24),%sp@-
-	jsr	%pc@(sub_1000a35c)
+	jsr	%pc@(local_getptrsize)
 	movel	%sp@+,%d0
 	moveal	%a2,%a0
 	subl	%d0,%a0@(4)
@@ -17326,10 +17330,10 @@ sub_1000a31e:
 	.ascii	"PLStrCmp"
 	.byte	0x00,0x00,0x00
 
-sub_1000a35c:
+local_getptrsize:
 	moveal	%sp@+,%a1
 	moveal	%sp@+,%a0
-	.short	0xa021
+	_GetPtrSize
 	movel	%d0,%sp@
 	bpls	.L1000a368
 	clrl	%sp@
