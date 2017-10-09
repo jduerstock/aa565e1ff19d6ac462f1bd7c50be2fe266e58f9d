@@ -1,4 +1,8 @@
 
+.macro	_Read
+	.short	0xa002
+.endm
+
 .macro	_SetZone
 	.short	0xa01b
 .endm
@@ -13,6 +17,10 @@
 
 .macro	_HUnlock
 	.short	0xa02a
+.endm
+
+.macro	_SetFPos
+	.short	0xa044
 .endm
 
 .macro	_MemoryDispatch
@@ -14274,7 +14282,7 @@ sub_10008730:
 	unlk	%fp
 	rts
 
-sub_10008754:
+local_read:
 	linkw	%fp,#-80
 	moveml	%d3/%a2,%sp@-
 	movew	%fp@(8),%fp@(-56)
@@ -14287,7 +14295,7 @@ sub_10008754:
 	moveq	#0,%d0
 	movel	%d0,%fp@(-34)
 	lea	%fp@(-80),%a0
-	.short	0xa002
+	_Read
 	movew	%d0,%d3
 	movel	%fp@(-40),%a2@
 	movew	%d3,%d0
@@ -14814,7 +14822,7 @@ sub_10008974:
 	moveq	#1,%d0
 	movew	%d0,%sp@-
 	movel	%fp@(24),%sp@-
-	jsr	%pc@(sub_1000a41e)
+	jsr	%pc@(local_setfpos)
 	movew	%sp@+,%d0
 	movew	%d0,%fp@(-60)
 
@@ -14822,7 +14830,7 @@ sub_10008974:
 	movel	%a3,%sp@-
 	pea	%fp@(-56)
 	movew	%fp@(-58),%sp@-
-	jsr	%pc@(sub_10008754)
+	jsr	%pc@(local_read)
 	lea	%sp@(10),%sp
 	movew	%d0,%fp@(-60)
 	moveal	%fp@(50),%a0
@@ -17418,13 +17426,13 @@ sub_1000a3fc:
 	addql	#6,%sp
 	jmp	%a1@
 
-sub_1000a41e:
+local_setfpos:
 	linkw	%fp,#-50
 	moveal	%sp,%a0
 	movew	%fp@(14),%a0@(24)
 	movew	%fp@(12),%a0@(44)
 	movel	%fp@(8),%a0@(46)
-	.short	0xa044
+	_SetFPos
 	movew	%d0,%fp@(16)
 	unlk	%fp
 	moveal	%sp@+,%a1
