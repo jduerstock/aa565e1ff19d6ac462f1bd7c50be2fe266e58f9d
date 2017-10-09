@@ -433,7 +433,7 @@ sub_1000027c:
 	extl	%d1
 	movel	%d1,%sp@-
 	pea	%fp@(-32)
-	jsr	%pc@(sub_1000776c)
+	jsr	%pc@(j_local_numtostring)
 	lea	%fp@(-32),%a4
 
 .L100002e2:
@@ -12606,8 +12606,8 @@ local_SearchProc:
 	lea	%sp@(24),%sp
 	jmp	%a0@
 
-sub_1000776c:
-	braw	sub_1000a488
+j_local_numtostring:
+	braw	local_numtostring
 
 sub_10007770:
 	linkw	%fp,#-188
@@ -17467,7 +17467,7 @@ sub_1000a444:
 	movew	%d1,%sp@
 	jmp	%a1@
 
-sub_1000a488:
+local_numtostring:
 	moveal	%sp@(4),%a0
 	movel	%sp@(8),%d0
 	_NumToString
