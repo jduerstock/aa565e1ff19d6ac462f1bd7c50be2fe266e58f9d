@@ -8815,7 +8815,7 @@ sub_10005208:
 	moveal	%fp@(-40),%a2
 	movel	%a2@(28),%sp@-
 	movel	%a2@(32),%sp@-
-	jsr	%pc@(sub_10005748)
+	jsr	%pc@(zone_disposeptr)
 	addqw	#8,%sp
 	braw	.L10005398
 
@@ -9269,7 +9269,7 @@ sub_10005716:
 	unlk	%fp
 	rts
 
-sub_10005748:
+zone_disposeptr:
 	linkw	%fp,#0
 	moveml	%a3-%a4,%sp@-
 	moveal	%fp@(12),%a4
@@ -14905,7 +14905,7 @@ sub_10008d1e:
 .L10008d86:
 	movel	%fp@(20),%sp@-
 	movel	%fp@(24),%sp@-
-	jsr	%pc@(sub_10005748)
+	jsr	%pc@(zone_disposeptr)
 	addqw	#8,%sp
 	bras	.L10008daa
 
