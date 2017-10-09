@@ -112,6 +112,15 @@
 	.short	0xa9a0
 .endm
 
+.macro	_Pack7
+	.short	0xa9ee
+.endm
+
+.macro	_NumToString
+	clrw	%sp@-
+	_Pack7
+.endm
+
 .macro	_HighLevelFSDispatch
 	.short	0xaa52
 .endm
@@ -17461,8 +17470,7 @@ sub_1000a444:
 sub_1000a488:
 	moveal	%sp@(4),%a0
 	movel	%sp@(8),%d0
-	clrw	%sp@-
-	.short	0xa9ee
+	_NumToString
 	moveal	%sp@+,%a0
 	addqw	#8,%sp
 	jmp	%a0@
