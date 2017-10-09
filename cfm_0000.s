@@ -97,6 +97,10 @@
 	.short	0xa71e
 .endm
 
+.macro	_HOpenResFile
+	.short	0xa81a
+.endm
+
 .macro	_AliasDispatch
 	.short	0xa823
 .endm
@@ -10487,7 +10491,7 @@ sub_100061b0:
 	movel	%a3@(48),%sp@-
 	movel	%a3@(18),%sp@-
 	clrb	%sp@-
-	.short	0xa81a
+	_HOpenResFile
 	movew	%sp@+,%d3
 	moveq	#-1,%d0
 	cmpw	%d0,%d3
@@ -10498,7 +10502,7 @@ sub_100061b0:
 	movel	%a3@(18),%sp@-
 	moveq	#1,%d0
 	moveb	%d0,%sp@-
-	.short	0xa81a
+	_HOpenResFile
 	movew	%sp@+,%d3
 
 .L10006208:
@@ -10510,7 +10514,7 @@ sub_100061b0:
 	movel	%a3@(18),%sp@-
 	moveq	#4,%d0
 	moveb	%d0,%sp@-
-	.short	0xa81a
+	_HOpenResFile
 	movew	%sp@+,%d3
 
 .L10006224:
