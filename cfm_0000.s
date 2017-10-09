@@ -89,6 +89,10 @@
 	_HFSDispatch
 .endm
 
+.macro	_NewPtrSys
+	.short	0xa51e
+.endm
+
 .macro	_NewPtrSysClear
 	.short	0xa71e
 .endm
@@ -9482,7 +9486,7 @@ sub_1000589c:
 	movel	%d0,%sp@-
 	pea	%fp@(-332)
 	pea	%fp@(-268)
-	jsr	%pc@(sub_1000a1ca)
+	jsr	%pc@(local_memcpy)
 	lea	%sp@(12),%sp
 	movel	%fp@(-4),%d0
 	lea	%fp@(-268),%a0
@@ -9551,7 +9555,7 @@ sub_1000589c:
 	movel	%d0,%sp@-
 	pea	%fp@(-332)
 	pea	%fp@(-268)
-	jsr	%pc@(sub_1000a1ca)
+	jsr	%pc@(local_memcpy)
 	lea	%sp@(12),%sp
 	movel	%fp@(-8),%d0
 	lea	%fp@(-268),%a0
@@ -9830,7 +9834,7 @@ sub_10005c32:
 	jsr	%pc@(sub_100033dc)
 	moveal	%d0,%a3
 	movel	%fp@(8),%d0
-	.short	0xa51e
+	_NewPtrSys
 	moveal	%a0,%a2
 	movel	%a2,%d0
 	bnes	.L10005c50
@@ -10030,7 +10034,7 @@ sub_10005dba:
 
 .L10005de0:
 	movel	%d5,%d0
-	.short	0xa51e
+	_NewPtrSys
 	movel	%a0,%d4
 	movel	%d4,%d6
 	addl	%d5,%d6
@@ -17099,7 +17103,7 @@ byte_1000a14a:
 	.byte	0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
 	.byte	0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
 
-sub_1000a1ca:
+local_memcpy:
 	moveml	%sp@(4),%a0-%a1
 	movel	%a0,%d0
 	movel	%d2,%sp@-
