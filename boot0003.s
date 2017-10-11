@@ -2863,8 +2863,15 @@ sub_10005b1c:
 
 off_10005b40:
 	.word	.L10005b54-off_10005b40+2
-	.byte	0x00,0x1e,0x00,0x26,0x00,0x3e,0x00,0x36,0x00,0x44,0x00,0x44,0x00,0x44
-	.byte	0x00,0x44,0x00,0x2e
+	.word	.L10005b5c-off_10005b40+2
+	.word	.L10005b64-off_10005b40+2
+	.word	.L10005b7c-off_10005b40+2
+	.word	.L10005b74-off_10005b40+2
+	.word	.L10005b82-off_10005b40+2
+	.word	.L10005b82-off_10005b40+2
+	.word	.L10005b82-off_10005b40+2
+	.word	.L10005b82-off_10005b40+2
+	.word	.L10005b6c-off_10005b40+2
 
 .L10005b54:
 	movel	#0x73667672,%d5
