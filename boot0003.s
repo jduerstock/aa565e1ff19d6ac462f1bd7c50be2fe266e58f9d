@@ -2305,39 +2305,25 @@ sub_1000472a:
 	rts
 
 str_10004858:
-	.byte	0x0c
-	.ascii	"Generic ncod"
-	.byte	0x00
+	pcstr	"Generic ncod"
 
 str_10004866:
-	.byte	0x16
-	.ascii	"ProcessMgrSupport ncod"
-	.byte	0x00
+	pcstr	"ProcessMgrSupport ncod"
 
 str_1000487e:
-	.byte	0x21
-	.ascii	"owerPC Debugger Nub Setup failed."
-	.byte	0x00,0x00
+	pcstr	"owerPC Debugger Nub Setup failed."
 
 str_100048a2:
-	.byte	0x19
-	.ascii	"PowerPC Debugger Nub ncod"
-	.byte	0x00,0x00
+	pcstr	"PowerPC Debugger Nub ncod"
 
 str_100048be:
-	.byte	0x34
-	.ascii	"As far as I can tell, this should never be called!!!"
-	.byte	0x00
+	pcstr	"As far as I can tell, this should never be called!!!"
 
 str_100048f4:
-	.byte	0x0f
-	.ascii	"Mixed Mode ncod"
-	.byte	0x00,0x00
+	pcstr	"Mixed Mode ncod"
 
 str_10004906:
-	.byte	0x08
-	.ascii	"CFM ncod"
-	.byte	0x00
+	pcstr	"CFM ncod"
 
 sub_10004910:
 	linkw	%fp,#-270
