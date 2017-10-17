@@ -1,7 +1,7 @@
 
 .macro pcstr	s
 	.set	CCOUNT,0
-	.irpc	param,\s
+	.irpc	param,"\s"
 		.set	CCOUNT,CCOUNT+1
 	.endr
 	.byte	CCOUNT
@@ -2056,30 +2056,22 @@ str_10004448:
 	pcstr	"MMFlushEmulatorCacheRange"
 
 str_10004464:
-	.byte	0x5b
-	.ascii	"Doom, Death, and Devestation.  You are missing the MixedModeDispatch trap handler (0xaa59)!"
-	.byte	0x00,0x00
+	pcstr	"Doom, Death, and Devestation.  You are missing the MixedModeDispatch trap handler (0xaa59)!"
 
 str_100044c2:
 	pcstr	"_MixedModeDispatchTrapHandler_"
 
 str_100044e2:
-	.byte	0x36
-	.ascii	"GoNative - could not find EmulatorReturn in Mixed Mode"
-	.byte	0x00
+	pcstr	"GoNative - could not find EmulatorReturn in Mixed Mode"
 
 str_1000451a:
 	pcstr	"EmulatorReturn"
 
 str_1000452a:
-	.byte	0x3a
-	.ascii	"GoNative - could not find Emulated68KContext in Mixed Mode"
-	.byte	0x00
+	pcstr	"GoNative - could not find Emulated68KContext in Mixed Mode"
 
 str_10004566:
-	.byte	0x12
-	.ascii	"Emulated68KContext"
-	.byte	0x00
+	pcstr	"Emulated68KContext"
 
 str_1000457a:
 	.byte	0x33
@@ -2089,9 +2081,7 @@ str_1000457a:
 	.byte	0x00,0x00
 
 str_100045b0:
-	.byte	0x0e
-	.ascii	"ReturnFromM68k"
-	.byte	0x00
+	pcstr	"ReturnFromM68k"
 
 str_100045c0:
 	.byte	0x31
@@ -2101,9 +2091,7 @@ str_100045c0:
 	.byte	0x00,0x00
 
 str_100045f4:
-	.byte	0x12
-	.ascii	"M68kToPowerPCEntry"
-	.byte	0x00
+	pcstr	"M68kToPowerPCEntry"
 
 sub_10004608:
 	linkw	%fp,#-14
@@ -2160,19 +2148,13 @@ sub_10004608:
 	rts
 
 str_10004696:
-	.byte	0x31
-	.ascii	"GoNative - could not find Exception Manager hooks"
-	.byte	0x00,0x00
+	pcstr	"GoNative - could not find Exception Manager hooks"
 
 str_100046ca:
-	.byte	0x19
-	.ascii	"SystemExceptionDispatcher"
-	.byte	0x00,0x00
+	pcstr	"SystemExceptionDispatcher"
 
 str_100046e6:
-	.byte	0x18
-	.ascii	"LowLevelExceptionHandler"
-	.byte	0x00
+	pcstr	"LowLevelExceptionHandler"
 
 sub_10004700:
 	linkw	%fp,#-4
@@ -4513,9 +4495,10 @@ sub_10006492:
 	rts
 
 str_10006510:
-	.byte	0x1b
-	.ascii	"CFM 68k installproc failed!"
-	.byte	0x00,0x00
+	pcstr	"CFM 68k installproc failed!"
+#	.byte	0x1b
+#	.ascii	"CFM 68k installproc failed!"
+#	.byte	0x00,0x00
 
 str_1000652e:
 	.byte	0x23
