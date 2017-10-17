@@ -4311,9 +4311,7 @@ sub_10006304:
 	rts
 
 str_1000637a:
-	.byte	0x1f
-	.ascii	"Getting 'cfrg' resource failed!"
-	.byte	0x00,0x00
+	pcstr	"Getting 'cfrg' resource failed!"
 
 sub_1000639c:
 	linkw	%fp,#-136
@@ -4482,19 +4480,12 @@ sub_10006492:
 
 str_10006510:
 	pcstr	"CFM 68k installproc failed!"
-#	.byte	0x1b
-#	.ascii	"CFM 68k installproc failed!"
-#	.byte	0x00,0x00
 
 str_1000652e:
-	.byte	0x23
-	.ascii	"Error getting the CFM-68K resource!"
-	.byte	0x00,0x00
+	pcstr	"Error getting the CFM-68K resource!"
 
 str_10006554:
-	.byte	0x38
-	.ascii	"CFM is already installed on this machine- check the gtbl"
-	.byte	0x00
+	pcstr	"CFM is already installed on this machine- check the gtbl"
 
 sub_1000658e:
 	linkw	%fp,#-266
@@ -4547,9 +4538,7 @@ sub_1000658e:
 	rts
 
 str_10006606:
-	.byte	0x09
-	.ascii	"MixedMode"
-	.byte	0x00,0x00
+	pcstr	"MixedMode"
 
 	.byte	0x08,0x38,0x00,0x06,0x02,0x8e,0x66,0x00,0x03,0xe2,0x4a,0xb8,0x08,0xa8
 	.byte	0x67,0x00,0x03,0xda,0x20,0x78,0x08,0xa8,0x20,0x50,0x4a,0x50,0x67,0x00,0x03,0xce
@@ -5203,13 +5192,9 @@ str_1000757e:
 	pcstr	"Debugger"
 
 str_10007588:
-	.byte	0x0c
-	.ascii	"Disassembler"
-	.byte	0x00
+	pcstr	"Disassembler"
 
-	.byte	0x06
-	.ascii	"System"
-	.byte	0x00
+	pcstr	"System"
 
 str_1000759e:
 	.byte	0x00,0x00
