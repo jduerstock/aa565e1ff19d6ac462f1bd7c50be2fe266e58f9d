@@ -5418,9 +5418,7 @@ off_10007502:
 	clrw	%a0@
 	rts
 
-	.byte	0x0e
-	.ascii	"Virtual Memory"
-	.byte	0x00
+	pcstr	"Virtual Memory"
 
 str_1000757e:
 	pcstr	"Debugger"
