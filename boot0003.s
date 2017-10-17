@@ -4449,6 +4449,8 @@ sub_1000639c:
 	moveal	%sp@+,%a0
 	addqw	#8,%sp
 	jmp	%a0@
+
+sub_10006492:
 	linkw	%fp,#-4
 	moveml	%d7/%a3-%a4,%sp@-
 	movew	#-21926,%d0
