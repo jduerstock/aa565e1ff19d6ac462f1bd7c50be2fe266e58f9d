@@ -4244,14 +4244,10 @@ sub_100061ae:
 	rts
 
 str_100062a8:
-	.byte	0x29
-	.ascii	"FragApplyUpdate in the nlib init routine."
-	.byte	0x00,0x00
+	pcstr	"FragApplyUpdate in the nlib init routine."
 
 str_100062d4:
-	.byte	0x2e
-	.ascii	"GoNative - error happened during nlib override"
-	.byte	0x00
+	pcstr	"GoNative - error happened during nlib override"
 
 sub_10006304:
 	linkw	%fp,#0
