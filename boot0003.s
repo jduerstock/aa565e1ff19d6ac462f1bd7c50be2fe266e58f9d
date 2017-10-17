@@ -2502,34 +2502,22 @@ sub_10004910:
 	rts
 
 str_10004aa4:
-	.byte	0x31
-	.ascii	" FragApplyUpdate in the fovr init routine failed."
-	.byte	0x00,0x00
+	pcstr	" FragApplyUpdate in the fovr init routine failed."
 
 str_10004ad8:
-	.byte	0x16
-	.ascii	"ProcessMgrSupport ncod"
-	.byte	0x00
+	pcstr	"ProcessMgrSupport ncod"
 
 str_10004af0:
-	.byte	0x0f
-	.ascii	"Mixed Mode ncod"
-	.byte	0x00,0x00
+	pcstr	"Mixed Mode ncod"
 
 str_10004b02:
-	.byte	0x08
-	.ascii	"CFM ncod"
-	.byte	0x00
+	pcstr	"CFM ncod"
 
 str_10004b0c:
-	.byte	0x31
-	.ascii	"GoNative - error happened during fovr FragPrepare"
-	.byte	0x00,0x00
+	pcstr	"GoNative - error happened during fovr FragPrepare"
 
 str_10004b40:
-	.byte	0x3d
-	.ascii	"InstallOneOverrideLibrary: FragPrepare failed on old library."
-	.byte	0x00,0x00
+	pcstr	"InstallOneOverrideLibrary: FragPrepare failed on old library."
 
 sub_10004b80:
 	linkw	%fp,#-8
