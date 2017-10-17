@@ -5231,9 +5231,7 @@ off_10007502:
 	.byte	0x00
 
 str_1000757e:
-	.byte	0x08
-	.ascii	"Debugger"
-	.byte	0x00
+	pcstr	"Debugger"
 
 str_10007588:
 	.byte	0x0c
