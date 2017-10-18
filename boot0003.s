@@ -3585,24 +3585,16 @@ sub_100055e8:
 	rts
 
 str_100056be:
-	.byte	0x37
-	.ascii	"GoNative - could not find debugger's config fn pointer."
-	.byte	0x00,0x00
+	pcstr	"GoNative - could not find debugger's config fn pointer."
 
 str_100056f8:
-	.byte	0x0d
-	.ascii	"llNubConfigFn"
-	.byte	0x00,0x00
+	pcstr	"llNubConfigFn"
 
 str_10005708:
-	.byte	0x35
-	.ascii	"GoNative - could not find debugger's config variable."
-	.byte	0x00,0x00
+	pcstr	"GoNative - could not find debugger's config variable."
 
 str_10005740:
-	.byte	0x12
-	.ascii	"llNubStartupConfig"
-	.byte	0x00
+	pcstr	"llNubStartupConfig"
 
 sub_10005754:
 	linkw	%fp,#-30
