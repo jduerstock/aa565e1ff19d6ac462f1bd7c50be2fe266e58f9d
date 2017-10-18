@@ -3744,64 +3744,40 @@ sub_10005754:
 	rts
 
 str_100058c2:
-	.byte	0x45
-	.ascii	"           You can safely ignore the CPUType error and just go on...."
-	.byte	0x00,0x00
+	pcstr	"           You can safely ignore the CPUType error and just go on...."
 
 str_1000590a:
-	.byte	0x31
-	.ascii	"GoNative - could not find debugger nub's CPUType."
-	.byte	0x00,0x00
+	pcstr	"GoNative - could not find debugger nub's CPUType."
 
 str_1000593e:
-	.byte	0x0a
-	.ascii	"nubCPUType"
-	.byte	0x00
+	pcstr	"nubCPUType"
 
 str_1000594a:
-	.byte	0x3c
-	.ascii	"GoNative - could not find debugger's exception enable flags."
-	.byte	0x00
+	pcstr	"GoNative - could not find debugger's exception enable flags."
 
 str_10005988:
-	.byte	0x0a
-	.ascii	"nubEnables"
-	.byte	0x00
+	pcstr	"nubEnables"
 
 str_10005994:
-	.byte	0x46
-	.ascii	"GoNative - could not find debugger's chaining exception handler param."
-	.byte	0x00
+	pcstr	"GoNative - could not find debugger's chaining exception handler param."
 
 str_100059dc:
-	.byte	0x16
-	.ascii	"processMgrHandlerParam"
-	.byte	0x00
+	pcstr	"processMgrHandlerParam"
 
 str_100059f4:
-	.byte	0x48
-	.ascii	"GoNative - could not find debugger's chaining exception handler address."
-	.byte	0x00
+	pcstr	"GoNative - could not find debugger's chaining exception handler address."
 
 str_10005a3e:
-	.byte	0x15
-	.ascii	"processMgrHandlerAddr"
-	.byte	0x00,0x00
+	pcstr	"processMgrHandlerAddr"
 
 str_10005a56:
-	.byte	0x35
-	.ascii	"GoNative - could not find debugger's exception param."
-	.byte	0x00,0x00
+	pcstr	"GoNative - could not find debugger's exception param."
 
 str_10005a8e:
-	.byte	0x05
-	.ascii	"nubPB"
-	.byte	0x00,0x00
+	pcstr	"nubPB"
 
 str_10005a96:
-	.byte	0x2b
-	.ascii	"GoNative - no entrypoint to native debugger"
-	.byte	0x00,0x00
+	pcstr	"GoNative - no entrypoint to native debugger"
 
 sub_10005ac4:
 	linkw	%fp,#-4
