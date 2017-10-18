@@ -1825,9 +1825,7 @@ FragPrepareAccRsrc:
 	.byte	0x00,0x0c
 
 str_10001024:
-	.byte	0x09
-	.ascii	"<AccRsrc>"
-	.byte	0x00,0x00
+	pcstr	"<AccRsrc>"
 
 sub_10001030:
 	linkw	%fp,#-12
@@ -2241,9 +2239,7 @@ FragApplyUpdate:
 	.byte	0x00,0x36
 
 str_10001442:
-	.byte	0x34
-	.ascii	"FragApplyUpdate: updating connection already in use."
-	.byte	0x00
+	pcstr	"FragApplyUpdate: updating connection already in use."
 
 FragResolveSymbol:
 	linkw	%fp,#-48
@@ -2695,19 +2691,13 @@ FragRegisterMemLib:
 	.byte	0x00,0x90
 
 str_100018c4:
-	.byte	0x25
-	.ascii	"FragRegisterMemLib: libName too long."
-	.byte	0x00,0x00
+	pcstr	"FragRegisterMemLib: libName too long."
 
 str_100018ec:
-	.byte	0x41
-	.ascii	"FragRegisterMemLib: locator not to kMemoryCFragLocator container."
-	.byte	0x00,0x00
+	pcstr	"FragRegisterMemLib: locator not to kMemoryCFragLocator container."
 
 str_10001930:
-	.byte	0x22
-	.ascii	"FragRegisterMemLib: name too long."
-	.byte	0x00
+	pcstr	"FragRegisterMemLib: name too long."
 
 FragAddSearchProc:
 	linkw	%fp,#-4
@@ -5269,9 +5259,7 @@ sub_10002fc8:
 	.byte	0x00,0x40
 
 str_100030be:
-	.byte	0x3d
-	.ascii	"FindContextListEntry: Can't register public Gestalt function."
-	.byte	0x00,0x00
+	pcstr	"FindContextListEntry: Can't register public Gestalt function."
 
 sub_100030fe:
 	linkw	%fp,#0
