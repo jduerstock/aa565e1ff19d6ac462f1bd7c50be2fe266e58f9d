@@ -3407,14 +3407,10 @@ sub_10005344:
 	rts
 
 str_100054d2:
-	.byte	0x1a
-	.ascii	"Debugger Nub Configuration"
-	.byte	0x00
+	pcstr	"Debugger Nub Configuration"
 
 str_100054ee:
-	.byte	0x18
-	.ascii	"Debugger Nub Preferences"
-	.byte	0x00
+	pcstr	"Debugger Nub Preferences"
 
 sub_10005508:
 	linkw	%fp,#0
