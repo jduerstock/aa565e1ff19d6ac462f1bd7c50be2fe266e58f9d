@@ -1,4 +1,15 @@
 
+.macro pcstr	s
+	.set	CCOUNT,0
+	.irpc	param,"\s"
+		.set	CCOUNT,CCOUNT+1
+	.endr
+	.byte	CCOUNT
+	.ascii	"\s"
+	.byte	0x00
+	.align	2
+.endm
+
 .macro	_Read
 	.short	0xa002
 .endm
@@ -1635,19 +1646,13 @@ FragPrepare:
 	.byte	0x00,0x68
 
 str_10000df6:
-	.byte	0x21
-	.ascii	"FragPrepare: regLibName too long."
-	.byte	0x00,0x00
+	pcstr	"FragPrepare: regLibName too long."
 
 str_10000e1a:
-	.byte	0x22
-	.ascii	"FragPrepare: need locator or name."
-	.byte	0x00
+	pcstr	"FragPrepare: need locator or name."
 
 str_10000e3e:
-	.byte	0x1e
-	.ascii	"FragPrepare: need real FSSpec."
-	.byte	0x00
+	pcstr	"FragPrepare: need real FSSpec."
 
 FragPrepareAccRsrc:
 	linkw	%fp,#-44
