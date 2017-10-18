@@ -3246,19 +3246,13 @@ sub_10005234:
 	rts
 
 str_100052a2:
-	.byte	0x5a
-	.ascii	"Death, Doom, and Destruction.  You are missing the CodeFragmentMgr trap handler (0xAA5A)!!"
-	.byte	0x00
+	pcstr	"Death, Doom, and Destruction.  You are missing the CodeFragmentMgr trap handler (0xAA5A)!!"
 
 str_100052fe:
-	.byte	0x13
-	.ascii	"_CFM68KTrapHandler_"
-	.byte	0x00,0x00
+	pcstr	"_CFM68KTrapHandler_"
 
 str_10005314:
-	.byte	0x2e
-	.ascii	"GoNative - Couldn't find globals in Native CFM"
-	.byte	0x00
+	pcstr	"GoNative - Couldn't find globals in Native CFM"
 
 sub_10005344:
 	linkw	%fp,#-92
@@ -6462,9 +6456,9 @@ ppc_10007e4e:
 	.long	0x3ce01234	/* 	lis	%r7,0x1234 */
 	.long	0x60e75678	/*	ori	%r7,%r7,0x5678 */
 	.long	0x7ce903a6	/* 	mtctr	%r7 */
-	.long	0x4c820420	/*	bnectr */
+	.long	0x4c820420	/*	bnectr	*/
 	.long	0x38600012	/*	li	%r3,18 */
-	.long	0x4e800420	/*	bctr */
+	.long	0x4e800420	/*	bctr	*/
 	.ascii	"BobA"
 
 sub_10007e6e:
