@@ -4106,9 +4106,7 @@ sub_10005c84:
 	rts
 
 str_10005dae:
-	.byte	0x3c
-	.ascii	"GoNative-- HOpenResFile on a GoNative extension file failed."
-	.byte	0x00
+	pcstr	"GoNative-- HOpenResFile on a GoNative extension file failed."
 
 sub_10005dec:
 	linkw	%fp,#-4
@@ -4273,14 +4271,10 @@ sub_1005ea6:
 	jmp	%a0@
 
 str_10005f7c:
-	.byte	0x16
-	.ascii	"Getting FSSpec failed!"
-	.byte	0x00
+	pcstr	"Getting FSSpec failed!"
 
 str_10005f94:
-	.byte	0x1f
-	.ascii	"Getting 'cfrg' resource failed!"
-	.byte	0x00,0x00
+	pcstr	"Getting 'cfrg' resource failed!"
 
 sub_10005fb6:
 	linkw	%fp,#0
@@ -4435,14 +4429,10 @@ sub_1000601e:
 	rts
 
 str_1000610c:
-	.byte	0x16
-	.ascii	"Getting FSSpec failed!"
-	.byte	0x00
+	pcstr	"Getting FSSpec failed!"
 
 str_10006124:
-	.byte	0x1f
-	.ascii	"Getting 'cfrg' resource failed!"
-	.byte	0x00,0x00
+	pcstr	"Getting 'cfrg' resource failed!"
 
 sub_10006146:
 	linkw	%fp,#-80
