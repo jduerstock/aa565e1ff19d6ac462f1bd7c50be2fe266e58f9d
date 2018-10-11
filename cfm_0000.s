@@ -180,6 +180,17 @@
 	.short	0xaa5a
 .endm
 
+.macro	_FragGetContextInfo
+	movew	#-11,%sp@-
+	_CodeFragmentDispatch
+.endm
+
+.macro	_FragRelease
+	movew	#-3,%sp@-
+	_CodeFragmentDispatch
+.endm
+
+sub_10000000:
 	nop
 	subal	%a0,%a0
 	braw	.L10000110
@@ -211,37 +222,37 @@ sub_10000014:
 	rts
 
 off_1000004e:
-	jmp	%pc@(FragRegisterLocalAllocator)
-	jmp	%pc@(FragRegisterSpecialLibs)
-	jmp	%pc@(FragGetFileRegistryInfo)
-	jmp	%pc@(FragRegisterFileLibs)
-	jmp	%pc@(FragGetAppLocator)
-	jmp	%pc@(FragFindOwnerOfPC)
-	jmp	%pc@(FragApplyUpdate)
-	jmp	%pc@(FragReloadAccRsrc)
-	jmp	%pc@(FragPrepareAccRsrc)
-	jmp	%pc@(FragGetSectionInfo)
-	jmp	%pc@(FragGetConnectionInfo)
-	jmp	%pc@(FragGetClosureInfo)
-	jmp	%pc@(FragGetContextInfo)
-	jmp	%pc@(FragResolveSymbol)
-	jmp	%pc@(FragGetMemRegistryInfo)
-	jmp	%pc@(FragRemoveNotifyProc)
-	jmp	%pc@(FragAddNotifyProc)
-	jmp	%pc@(FragRemoveSearchProc)
-	jmp	%pc@(FragAddSearchProc)
-	jmp	%pc@(FragRegisterMemLib)
-	jmp	%pc@(FragRelease)
-	jmp	%pc@(FragPrepare)
-	jmp	%pc@(FragCreateContext)
-	jmp	%pc@(.L10000048)
-	jmp	%pc@(GetSharedLibrary)
-	jmp	%pc@(GetDiskFragment)
-	jmp	%pc@(GetMemFragment)
-	jmp	%pc@(CloseConnection)
-	jmp	%pc@(FindSymbol)
-	jmp	%pc@(CountSymbols)
-	jmp	%pc@(GetIndSymbol)
+	jmp	%pc@(FragRegisterLocalAllocator)	/* -23 */
+	jmp	%pc@(FragRegisterSpecialLibs)		/* -22 */
+	jmp	%pc@(FragGetFileRegistryInfo)		/* -21 */
+	jmp	%pc@(FragRegisterFileLibs)		/* -20 */
+	jmp	%pc@(FragGetAppLocator)			/* -19 */
+	jmp	%pc@(FragFindOwnerOfPC)			/* -18 */
+	jmp	%pc@(FragApplyUpdate)			/* -17 */
+	jmp	%pc@(FragReloadAccRsrc)			/* -16 */
+	jmp	%pc@(FragPrepareAccRsrc)		/* -15 */
+	jmp	%pc@(FragGetSectionInfo)		/* -14 */
+	jmp	%pc@(FragGetConnectionInfo)		/* -13 */
+	jmp	%pc@(FragGetClosureInfo)		/* -12 */
+	jmp	%pc@(FragGetContextInfo)		/* -11 */
+	jmp	%pc@(FragResolveSymbol)			/* -10 */
+	jmp	%pc@(FragGetMemRegistryInfo)		/* -9 */
+	jmp	%pc@(FragRemoveNotifyProc)		/* -8 */
+	jmp	%pc@(FragAddNotifyProc)			/* -7 */
+	jmp	%pc@(FragRemoveSearchProc)		/* -6 */
+	jmp	%pc@(FragAddSearchProc)			/* -5 */
+	jmp	%pc@(FragRegisterMemLib)		/* -4 */
+	jmp	%pc@(FragRelease)			/* -3 */
+	jmp	%pc@(FragPrepare)			/* -2 */
+	jmp	%pc@(FragCreateContext)			/* -1 */
+	jmp	%pc@(.L10000048)			/* 0 */
+	jmp	%pc@(GetSharedLibrary)			/* 1 */
+	jmp	%pc@(GetDiskFragment)			/* 2 */
+	jmp	%pc@(GetMemFragment)			/* 3 */
+	jmp	%pc@(CloseConnection)			/* 4 */
+	jmp	%pc@(FindSymbol)			/* 5 */
+	jmp	%pc@(CountSymbols)			/* 6 */
+	jmp	%pc@(GetIndSymbol)			/* 7 */
 
 .L100000ca:
 	addqw	#6,%sp
@@ -271,8 +282,7 @@ sub_100000fc:
 	moveq	#0,%d0
 	movel	%d0,%sp@-
 	moveb	%d1,%sp@-
-	movew	#-3,%sp@-
-	_CodeFragmentDispatch
+	_FragRelease
 	movew	%sp@+,%d0
 	rts
 
@@ -288,8 +298,7 @@ sub_100000fc:
 	movel	%d0,%sp@-
 	clrw	%sp@-
 	pea	%fp@(-80)
-	movew	#-11,%sp@-
-	_CodeFragmentDispatch
+	_FragGetContextInfo
 	movew	%sp@+,%d0
 	bnes	.L100001aa
 	subql	#4,%sp
@@ -652,8 +661,7 @@ sub_10000400:
 	clrl	%sp@-
 	moveq	#1,%d0
 	moveb	%d0,%sp@-
-	movew	#-3,%sp@-
-	_CodeFragmentDispatch
+	_FragRelease
 	movew	%sp@+,%d0
 	bnes	.L1000043c
 	addql	#4,%sp
@@ -665,8 +673,7 @@ sub_10000400:
 	clrl	%sp@-
 	moveq	#0,%d0
 	moveb	%d0,%sp@-
-	movew	#-3,%sp@-
-	_CodeFragmentDispatch
+	_FragRelease
 	addql	#6,%sp
 	rts
 
@@ -683,10 +690,10 @@ sub_10000400:
 	movel	%fp@(8),%a2@(4)
 	movel	%fp@(12),%a2@(8)
 	movel	%a2,%sp@-
-	movew	#0xa9f4,%sp@-
+	movew	#0xa9f4,%sp@-		/* ExitToShell */
 	moveq	#1,%d0
 	moveb	%d0,%sp@-
-	jsr	%pc@(sub_1000797a)
+	jsr	%pc@(j_cfm_SetTrapAddress)
 	moveml	%sp@+,%a2-%a3
 	unlk	%fp
 	rts
@@ -12839,8 +12846,8 @@ sub_10007770:
 	unlk	%fp
 	rts
 
-sub_1000797a:
-	braw	sub_1000a38c
+j_cfm_SetTrapAddress:
+	braw	cfm_SetTrapAddress
 
 sub_1000797e:
 	braw	sub_1000a444
@@ -17405,7 +17412,7 @@ sub_1000a378:
 	movel	%a0,%sp@
 	jmp	%a1@
 
-sub_1000a38c:
+cfm_SetTrapAddress:
 	moveal	%sp@+,%a1
 	moveb	%sp@+,%d1
 	movew	%sp@+,%d0
