@@ -13781,7 +13781,7 @@ sub_1000816a:
 	movel	%a0@(24),%d0
 	cmpl	%fp@(-16),%d0
 	beqs	.L1000823c
-	movew	#-2806,%d3
+	movew	#-2806,%d3		/* fragFormatUnknown: registered name already in use */
 	braw	.L1000840e
 
 .L1000823c:
@@ -14837,7 +14837,7 @@ sub_10008974:
 .L10008ca6:
 	movel	%a3,%d0
 	bnes	.L10008cb2
-	moveq	#-108,%d0
+	moveq	#-108,%d0		/* iMemFullErr or memFullErr: Not enough room in heap zone */
 	movew	%d0,%fp@(-60)
 	bras	.L10008d06
 
@@ -15037,7 +15037,7 @@ sub_10008dfc:
 .L10008e5e:
 	movel	%a2,%d0
 	bnes	.L10008e2c
-	movew	#-2806,%d0
+	movew	#-2806,%d0		/* fragFormatUnknown: registered name already in use */
 
 .L10008e66:
 	moveml	%sp@+,%d3/%a2-%a4
@@ -15105,7 +15105,7 @@ sub_10008ee2:
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	bnes	.L10008f02
-	moveq	#-108,%d0
+	moveq	#-108,%d0		/* iMemFullErr or memFullErr: Not enough room in heap zone */
 	jmp	%pc@(.L100090d8)
 
 .L10008f02:
@@ -15251,7 +15251,7 @@ sub_10008ee2:
 	bnes	.L1000906a
 
 .L10009054:
-	moveq	#-108,%d0
+	moveq	#-108,%d0		/* iMemFullErr or memFullErr: Not enough room in heap zone */
 	movew	%d0,%sp@-
 	movel	%fp@(22),%sp@-
 	movel	%fp@(8),%sp@-
@@ -16268,7 +16268,7 @@ sub_10009844:
 	moveq	#88,%d1
 	cmpl	%d1,%d0
 	beqw	.L10009c42
-	moveq	#90,%d1
+	moveq	#90,%d1		/* 0x5a */
 	cmpl	%d1,%d0
 	beqw	.L10009c88
 	braw	.L10009ce8
@@ -16679,10 +16679,10 @@ sub_10009d02:
 	movel	%a2,%d0
 	beqs	.L10009dea
 	movew	%a2@,%d0
-	cmpiw	#19055,%d0
+	cmpiw	#19055,%d0		/* 'Jo' */
 	bnes	.L10009de4
 	movew	%a2@(2),%d0
-	cmpiw	#31009,%d0
+	cmpiw	#31009,%d0		/* 'y!' */
 	bnes	.L10009de4
 	movel	%a2@(4),%d0
 	cmpl	%d3,%d0
@@ -16695,7 +16695,7 @@ sub_10009d02:
 	bpls	.L10009dea
 
 .L10009de4:
-	movew	#-2806,%d0
+	movew	#-2806,%d0		/* fragFormatUnknown: registered name already in use */
 	bras	.L10009e3c
 
 .L10009dea:
@@ -16710,7 +16710,7 @@ sub_10009d02:
 	movel	%d0,%a3@
 	tstl	%d0
 	bnes	.L10009e08
-	moveq	#-108,%d0
+	moveq	#-108,%d0		/* iMemFullErr or memFullErr: Not enough room in heap zone */
 	bras	.L10009e3c
 
 .L10009e08:
@@ -17122,25 +17122,25 @@ sub_10009ee6:
 byte_1000a14a:
 	.byte	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 	.byte	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
-	.byte	0x20
-	.byte	0x21
-	.byte	0x22
-	.byte	0x23
-	.byte	0x24
-	.byte	0x25
+	.byte	0x20	/* kPEFRelocBySectC */
+	.byte	0x21	/* kPEFRelocBySectD */
+	.byte	0x22	/* kPEFRelocTVector12 */
+	.byte	0x23	/* kPEFRelocTVector8 */
+	.byte	0x24	/* kPEFRelocVTable8 */
+	.byte	0x25	/* kPEFRelocImportRun */
 	.byte	0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
-	.byte	0x30
-	.byte	0x31
-	.byte	0x32
-	.byte	0x33
+	.byte	0x30	/* kPEFRelocSmByImport */
+	.byte	0x31	/* kPEFRelocSmSetSectC */
+	.byte	0x32	/* kPEFRelocSmSetSectD */
+	.byte	0x33	/* kPEFRelocSmBySection */
 	.byte	0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
-	.byte	0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x40
-	.byte	0x48,0x48,0x48,0x48,0x48,0x48,0x48,0x48
-	.byte	0x50,0x50
-	.byte	0x52,0x52
+	.byte	0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x40	/* kPEFRelocIncrPosition */
+	.byte	0x48,0x48,0x48,0x48,0x48,0x48,0x48,0x48	/* kPEFRelocSmRepeat */
+	.byte	0x50,0x50	/* kPEFRelocSetPosition */
+	.byte	0x52,0x52	/* kPEFRelocLgByImport */
 	.byte	0xff,0xff,0xff,0xff
-	.byte	0x58,0x58
-	.byte	0x5a,0x5a
+	.byte	0x58,0x58	/* kPEFRelocLgRepeat */
+	.byte	0x5a,0x5a	/* kPEFRelocLgSetOrBySection */
 	.byte	0xff,0xff,0xff,0xff
 	.byte	0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
 	.byte	0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
