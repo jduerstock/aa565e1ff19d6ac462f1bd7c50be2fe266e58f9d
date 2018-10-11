@@ -343,6 +343,8 @@ sub_100000fc:
 
 .L10000188:
 	bras	.L100001a6
+
+.L1000018a:
 	moveq	#0,%d0
 	movew	#0xaafb,%d0
 	.short	0xa746
@@ -567,7 +569,7 @@ sub_1000027c:
 sub_1000036e:
 	linkw	%fp,#-48
 	moveml	%d3/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	_GetZone
 	moveal	%a0,%a3
@@ -1232,7 +1234,7 @@ FragCreateContext:
 	movel	%d0,%sp@-
 	jsr	%pc@(sub_10002fc8)
 	addqw	#8,%sp
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	beqs	.L100009d8
@@ -1281,7 +1283,7 @@ FragCreateContext:
 	moveal	%d0,%a3
 	movel	%a3,%d0
 	bnes	.L10000a0e
-	movew	#-2809,%d0
+	movew	#-2809,%d0		/* fragNoMem: unused */
 	movew	%d0,%fp@(26)
 	jmp	%pc@(.L10000ab6)
 
@@ -1296,7 +1298,7 @@ FragCreateContext:
 	movel	%a3,%sp@-
 	jsr	%pc@(sub_10005f48)
 	addqw	#4,%sp
-	movew	#-2809,%d0
+	movew	#-2809,%d0		/* fragNoMem: unused */
 	movew	%d0,%fp@(26)
 	jmp	%pc@(.L10000ab6)
 
@@ -1354,7 +1356,7 @@ FragPrepare:
 	movel	%fp@(28),%d6
 	moveq	#-1,%d5
 	clrb	%fp@(-8)
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-4)
 	movel	%fp@(32),%d1
 	beqs	.L10000b12
@@ -2125,7 +2127,7 @@ byte_100012de:
 FragApplyUpdate:
 	linkw	%fp,#-12
 	moveml	%d3/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	pea	%fp@(-4)
 	movel	%fp@(16),%sp@-
@@ -2264,7 +2266,7 @@ FragResolveSymbol:
 	linkw	%fp,#-48
 	moveml	%d3/%a2-%a4,%sp@-
 	moveal	%fp@(20),%a4
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%fp@(16),%d0
 	bnes	.L10001496
 	lea	%fp@(-12),%a0
@@ -2544,7 +2546,7 @@ FragRegisterMemLib:
 	jsr	%pc@(sub_10002fc8)
 	addqw	#8,%sp
 	moveal	%d0,%a2
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-4)
 	movel	%a3,%d1
 	beqs	.L1000175e
@@ -2667,7 +2669,7 @@ FragRegisterMemLib:
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	bnes	.L10001862
-	movew	#-2809,%d0
+	movew	#-2809,%d0		/* fragNoMem: unused */
 	movew	%d0,%fp@(22)
 	bras	.L100018b4
 
@@ -2726,7 +2728,7 @@ FragAddSearchProc:
 	movel	%d0,%sp@-
 	jsr	%pc@(sub_10002fc8)
 	addqw	#8,%sp
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	bnes	.L1000197e
@@ -2742,7 +2744,7 @@ FragAddSearchProc:
 	moveal	%d0,%a3
 	movel	%a3,%d0
 	bnes	.L10001998
-	movew	#-2809,%d0
+	movew	#-2809,%d0		/* fragNoMem: unused */
 	movew	%d0,%fp@(14)
 	bras	.L100019ba
 
@@ -2775,7 +2777,7 @@ FragRemoveSearchProc:
 	movel	%d0,%sp@-
 	jsr	%pc@(sub_10002fc8)
 	addqw	#8,%sp
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	bnes	.L100019f4
@@ -2834,7 +2836,7 @@ FragAddNotifyProc:
 	jsr	%pc@(sub_10002fc8)
 	addqw	#8,%sp
 	moveal	%d0,%a2
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	movel	%a2,%d0
 	bnes	.L10001a6c
@@ -2850,7 +2852,7 @@ FragAddNotifyProc:
 	moveal	%d0,%a3
 	movel	%a3,%d0
 	bnes	.L10001a86
-	movew	#-2809,%d0
+	movew	#-2809,%d0		/* fragNoMem: unused */
 	movew	%d0,%fp@(12)
 	bras	.L10001aa8
 
@@ -2885,7 +2887,7 @@ FragRemoveNotifyProc:
 	jsr	%pc@(sub_10002fc8)
 	addqw	#8,%sp
 	moveal	%d0,%a2
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	movel	%a2,%d0
 	bnes	.L10001ae4
@@ -2946,7 +2948,7 @@ sub_10001b30:
 	jsr	%pc@(sub_10002fc8)
 	addqw	#8,%sp
 	moveal	%d0,%a2
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-4)
 	movel	%a2,%d0
 	bnes	.L10001b66
@@ -3029,7 +3031,7 @@ FragGetContextInfo:
 	jsr	%pc@(sub_10002fc8)
 	addqw	#8,%sp
 	moveal	%d0,%a4
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a2
 	movel	%a4,%d0
 	bnes	.L10001c26
@@ -3576,7 +3578,7 @@ FragGetSectionInfo:
 FragFindOwnerOfPC:
 	linkw	%fp,#-24
 	moveml	%d3-%d4/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a2
 	moveal	%a2,%a3
 	lea	%a3@(368),%a3
@@ -3986,7 +3988,7 @@ sub_10002536:
 	linkw	%fp,#-156
 	moveml	%d3/%a2-%a4,%sp@-
 	clrb	%fp@(-10)
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-8)
 	moveal	%d0,%a0
 	moveal	%a0@(28),%a4
@@ -4150,7 +4152,7 @@ sub_10002536:
 sub_100026b8:
 	linkw	%fp,#-12
 	moveml	%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	cmpil	#0,%fp@(8)
 	bmis	.L100026d6
@@ -4410,7 +4412,7 @@ sub_10002878:
 sub_10002904:
 	linkw	%fp,#-24
 	moveml	%d3/%d5-%d7/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-4)
 	movew	%fp@(12),%d3
 	moveq	#-128,%d0
@@ -4441,7 +4443,7 @@ sub_10002904:
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	bnes	.L1000295c
-	movew	#-2809,%d0
+	movew	#-2809,%d0		/* fragNoMem: unused */
 	jmp	%pc@(.L10002a5a)
 
 .L1000295c:
@@ -4549,7 +4551,7 @@ sub_10002a62:
 	linkw	%fp,#-20
 	moveml	%d3-%d4/%a2-%a4,%sp@-
 	moveal	%fp@(8),%a3
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-4)
 	movew	%a3@(22),%d0
 	extl	%d0
@@ -4730,7 +4732,7 @@ FragGetFileRegistryInfo:
 	moveml	%d3-%d4/%a2-%a4,%sp@-
 	moveal	%fp@(8),%a3
 	movel	%fp@(12),%d4
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a2
 	cmpil	#0,%d4
 	bmis	.L10002c40
@@ -4860,7 +4862,7 @@ FragRegisterLocalAllocator:
 sub_10002d36:
 	linkw	%fp,#-4
 	moveml	%d3/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	moveq	#1,%d3
 	moveal	%a4,%a3
@@ -5049,7 +5051,7 @@ sub_10002e94:
 	linkw	%fp,#0
 	moveml	%a2-%a4,%sp@-
 	moveal	%fp@(8),%a3
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	moveal	%a3,%a2
 	moveq	#48,%d0
@@ -5082,7 +5084,7 @@ sub_10002e94:
 sub_10002ee4:
 	linkw	%fp,#-4
 	movel	%a2,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a2
 	movel	%a2,%d0
 	bnes	.L10002f42
@@ -5179,7 +5181,7 @@ sub_10002fc8:
 	moveml	%d3/%a2-%a4,%sp@-
 	moveal	%fp@(8),%a3
 	moveal	%fp@(12),%a4
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-16)
 	clrw	%d1
 	movew	%d1,%a4@
@@ -5613,9 +5615,9 @@ sub_1000338e:
 	unlk	%fp
 	rts
 
-sub_100033dc:
+cfm_GetGlobals:
 	linkw	%fp,#-4
-	movel	#1667657063,%d0
+	movel	#1667657063,%d0		/* 'cfmg' */
 	lea	%fp@(-4),%a1
 	_Gestalt
 	movel	%a0,%a1@
@@ -5924,7 +5926,7 @@ sub_1000370c:
 	linkw	%fp,#0
 	moveml	%d3/%a2-%a4,%sp@-
 	movel	%fp@(16),%d3
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a2
 	moveal	%a2@(44),%a3
 	moveal	%fp@(8),%a4
@@ -5978,7 +5980,7 @@ sub_10003746:
 	tstl	%d0
 	bnes	.L10003792
 	moveal	%fp@(20),%a0
-	movew	#-2809,%a0@
+	movew	#-2809,%a0@		/* fragNoMem: unused */
 	moveq	#0,%d0
 	bras	.L100037f8
 
@@ -7466,7 +7468,7 @@ sub_1000437c:
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	bnes	.L1000454e
-	movew	#-2809,%fp@(-28)
+	movew	#-2809,%fp@(-28)		/* fragNoMem: unused */
 	braw	.L10004682
 
 .L1000454e:
@@ -8513,7 +8515,7 @@ sub_10004efe:
 	tstl	%d0
 	bnes	.L10004f52
 	moveal	%fp@(34),%a0
-	movew	#-2809,%a0@
+	movew	#-2809,%a0@		/* fragNoMem: unused */
 	moveq	#0,%d0
 	jmp	%pc@(.L10005200)
 
@@ -9855,7 +9857,7 @@ sub_10005bae:
 sub_10005c32:
 	linkw	%fp,#0
 	moveml	%a2-%a3,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a3
 	movel	%fp@(8),%d0
 	_NewPtrSys
@@ -9881,7 +9883,7 @@ sub_10005c68:
 	linkw	%fp,#-4
 	moveml	%d4/%a2-%a4,%sp@-
 	movel	%fp@(8),%d4
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a3
 	moveq	#0,%d0
 	moveal	%d0,%a2
@@ -9957,7 +9959,7 @@ sub_10005c68:
 sub_10005cfa:
 	linkw	%fp,#-12
 	moveml	%d3/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-12)
 	moveal	%d0,%a0
 	moveal	%a0@(84),%a2
@@ -10044,7 +10046,7 @@ sub_10005cfa:
 sub_10005dba:
 	linkw	%fp,#-4
 	moveml	%d3-%d6/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	movel	%fp@(8),%d5
 	moveq	#47,%d0
@@ -10109,7 +10111,7 @@ sub_10005e42:
 	linkw	%fp,#-16
 	moveml	%d3-%d5/%a2-%a4,%sp@-
 	movel	%fp@(8),%d3
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-16)
 	clrb	%fp@(-12)
 	movel	%d3,%d1
@@ -10232,7 +10234,7 @@ sub_10005f34:
 sub_10005f48:
 	linkw	%fp,#-8
 	moveml	%d3-%d4/%a3-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a3
 	moveal	%fp@(8),%a4
 	subqw	#8,%a4
@@ -10329,7 +10331,7 @@ sub_1000600a:
 	moveb	%a0@,%d0
 	moveq	#0,%d4
 	moveb	%d0,%d4
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a3
 	moveal	%fp@(24),%a2
 	movel	%a2@,%d3
@@ -10724,7 +10726,7 @@ sub_10006388:
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	bnes	.L100063d6
-	movew	#-2809,%d0
+	movew	#-2809,%d0		/* fragNoMem: unused */
 	jmp	%pc@(.L10006628)
 
 .L100063d6:
@@ -11026,7 +11028,7 @@ sub_100066e6:
 	moveml	%d3-%d6/%a2-%a4,%sp@-
 	movew	%fp@(8),%d5
 	movel	%fp@(10),%d6
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-12)
 	moveq	#0,%d1
 	moveal	%d1,%a4
@@ -11369,7 +11371,7 @@ sub_100068f4:
 sub_10006a26:
 	linkw	%fp,#-172
 	moveml	%d3/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a3
 	moveal	%fp@(8),%a0
 	tstl	%a0@
@@ -11701,7 +11703,7 @@ sub_10006c7a:
 sub_10006da6:
 	linkw	%fp,#-344
 	moveml	%d3-%d7/%a2-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	pea	%fp@(-344)
 	movel	%fp@(16),%sp@-
@@ -12861,7 +12863,7 @@ sub_10007982:
 	movew	%d3,%fp@(-8)
 	moveq	#0,%d0
 	moveal	%d0,%a4
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-4)
 	movew	%d3,%a3@
 	moveal	%fp@(12),%a0
@@ -13353,7 +13355,7 @@ sub_10007e08:
 	linkw	%fp,#-28
 	moveml	%d3-%d6/%a2-%a4,%sp@-
 	clrb	%fp@(-28)
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-24)
 	clrw	%d1
 	moveal	%fp@(24),%a0
@@ -13623,7 +13625,7 @@ sub_10007e08:
 	movel	%a3,%d0
 	bnes	.L10008092
 	moveal	%fp@(24),%a0
-	movew	#-2809,%a0@
+	movew	#-2809,%a0@		/* fragNoMem: unused */
 	moveq	#0,%d0
 	jmp	%pc@(.L10008162)
 
@@ -13845,7 +13847,7 @@ sub_1000816a:
 	movel	%d0,%fp@(-32)
 	tstl	%d0
 	bnes	.L100082de
-	movew	#-2809,%d3
+	movew	#-2809,%d3		/* fragNoMem: unused */
 	braw	.L1000840e
 
 .L100082de:
@@ -14179,7 +14181,7 @@ sub_10008612:
 	linkw	%fp,#-12
 	moveml	%d3/%a2-%a4,%sp@-
 	moveal	%fp@(12),%a4
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a3
 	moveal	%a4@,%a2
 	movel	%a2,%d0
@@ -14547,7 +14549,7 @@ sub_10008974:
 	extw	%d0
 	extl	%d0
 	moveb	%d0,%fp@(-4)
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a2
 	moveq	#38,%d0
 	movel	%d0,%sp@-
@@ -14999,7 +15001,7 @@ sub_10008dfc:
 	moveal	%fp@(8),%a3
 	moveal	%fp@(12),%a4
 	movel	%fp@(16),%d3
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	movel	%d0,%fp@(-4)
 	tstl	%d0
 	bnes	.L10008e22
@@ -15045,11 +15047,11 @@ sub_10008dfc:
 sub_10008e6e:
 	linkw	%fp,#0
 	moveml	%a3-%a4,%sp@-
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a4
 	movel	%a4,%d0
 	bnes	.L10008e86
-	movew	#-2818,%d0
+	movew	#-2818,%d0		/* fragMgrInitErr: error connecting to library (error occured in sub prepare) */
 	bras	.L10008eba
 
 .L10008e86:
@@ -15060,7 +15062,7 @@ sub_10008e6e:
 	moveal	%d0,%a3
 	movel	%a3,%d0
 	bnes	.L10008e9c
-	movew	#-2809,%d0
+	movew	#-2809,%d0		/* fragNoMem: unused */
 	bras	.L10008eba
 
 .L10008e9c:
@@ -16697,7 +16699,7 @@ sub_10009d02:
 	bras	.L10009e3c
 
 .L10009dea:
-	jsr	%pc@(sub_100033dc)
+	jsr	%pc@(cfm_GetGlobals)
 	moveal	%d0,%a3
 	tstl	%a3@
 	bnes	.L10009e12
