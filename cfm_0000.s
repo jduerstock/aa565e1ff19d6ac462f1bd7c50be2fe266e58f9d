@@ -584,7 +584,7 @@ sub_1000036e:
 	moveb	%fp@(8),%d0
 	beqs	.L10000396
 	subqw	#4,%sp
-	movel	0x2a6,%sp@
+	movel	0x2a6,%sp@		/* LMGetSysZone */
 	moveal	%sp@+,%a0
 	cmpal	%a3,%a0
 	bnes	.L10000396
@@ -652,9 +652,10 @@ sub_10000400:
 	lea	%pc@(.L1000040e),%a0
 	bras	.L10000452
 
+/* begin new _ExitToShell code */
+
 .L1000040e:
 	jmp	%pc@(.L1000041a)
-
 
 .L10000412:
 	.byte	0x00,0x00,0x00,0x00
@@ -686,6 +687,8 @@ sub_10000400:
 	_FragRelease
 	addql	#6,%sp
 	rts
+
+/* end new _ExitToShell code */
 
 .L10000452:
 	movel	%a0,%d0
@@ -767,7 +770,7 @@ sub_10000486:
 	movel	%fp@(-68),%a0@
 	movel	%fp@(-68),%sp@-
 	subqw	#4,%sp
-	movew	#0xa9f4,%sp@-
+	movew	#0xa9f4,%sp@-		/* _ExitToShell */
 	moveq	#1,%d0
 	moveb	%d0,%sp@-
 	jsr	%pc@(j_cfm_GetTrapAddress)
@@ -781,6 +784,15 @@ sub_10000486:
 	moveml	%sp@+,%d3-%d4/%a2
 	unlk	%fp
 	rts
+
+/* EXTERN_API( OSErr )
+GetSharedLibrary(
+  ConstStr63Param      libName,
+  CFragArchitecture    archType,
+  CFragLoadOptions     options,
+  CFragConnectionID *  connID,
+  Ptr *                mainAddr,
+  Str255               errMessage) */
 
 GetSharedLibrary:
 	linkw	%fp,#-16
@@ -850,6 +862,17 @@ GetSharedLibrary:
 	moveal	%sp@+,%a0
 	lea	%sp@(24),%sp
 	jmp	%a0@
+
+/* EXTERN_API( OSErr )
+GetDiskFragment(
+  const FSSpec *       fileSpec,
+  UInt32               offset,
+  UInt32               length,
+  ConstStr63Param      fragName,         
+  CFragLoadOptions     options,
+  CFragConnectionID *  connID,           
+  Ptr *                mainAddr,         
+  Str255               errMessage) */
 
 GetDiskFragment:
 	linkw	%fp,#-32
@@ -928,6 +951,16 @@ GetDiskFragment:
 	moveal	%sp@+,%a0
 	lea	%sp@(32),%sp
 	jmp	%a0@
+
+/* EXTERN_API( OSErr )
+GetMemFragment(
+  void *               memAddr,
+  UInt32               length,
+  ConstStr63Param      fragName,
+  CFragLoadOptions     options,
+  CFragConnectionID *  connID,
+  Ptr *                mainAddr,
+  Str255               errMessage) */
 
 GetMemFragment:
 	linkw	%fp,#-32
@@ -1017,6 +1050,8 @@ GetMemFragment:
 	lea	%sp@(28),%sp
 	jmp	%a0@
 
+/* EXTERN_API( OSErr ) CloseConnection(CFragConnectionID * connID) */
+
 CloseConnection:
 	linkw	%fp,#0
 	moveml	%d3/%a3-%a4,%sp@-
@@ -1064,6 +1099,13 @@ CloseConnection:
 	moveal	%sp@+,%a0
 	addqw	#4,%sp
 	jmp	%a0@
+
+/* EXTERN_API( OSErr )
+FindSymbol(
+  CFragConnectionID   connID,
+  ConstStr255Param    symName,
+  Ptr *               symAddr,
+  CFragSymbolClass *  symClass) */
 
 FindSymbol:
 	linkw	%fp,#-12
@@ -1120,6 +1162,11 @@ FindSymbol:
 	lea	%sp@(16),%sp
 	jmp	%a0@
 
+/* EXTERN_API( OSErr )
+CountSymbols(
+  CFragConnectionID   connID,
+  long *              symCount) */
+
 CountSymbols:
 	linkw	%fp,#-212
 	moveml	%d3/%a2,%sp@-
@@ -1168,6 +1215,14 @@ CountSymbols:
 	moveal	%sp@+,%a0
 	addqw	#8,%sp
 	jmp	%a0@
+
+/* EXTERN_API( OSErr )
+GetIndSymbol(
+  CFragConnectionID   connID,
+  long                symIndex,
+  Str255              symName,
+  Ptr *               symAddr,
+  CFragSymbolClass *  symClass) */
 
 GetIndSymbol:
 	linkw	%fp,#-8
@@ -1233,6 +1288,13 @@ GetIndSymbol:
 	moveal	%sp@+,%a0
 	lea	%sp@(20),%sp
 	jmp	%a0@
+
+/* FragErr FragCreateContext(FragContextID *contextID,
+ THz                 heapZone, 
+ AddressSpaceID      addressSpace, 
+ TaskID              taskID,
+ TeamID              teamID, 
+ Mask                contextFlags ); */
 
 FragCreateContext:
 	linkw	%fp,#-16
@@ -1357,6 +1419,15 @@ FragCreateContext:
 	moveal	%sp@+,%a0
 	lea	%sp@(18),%sp
 	jmp	%a0@
+
+/* FragErr FragPrepare(FragContextID contextID,
+ FragmentLocatorPtr  fragLocator,
+ Str63               libName,
+ Boolean             attachDynamic,
+ OSType              architecture,
+ FragConnectionID   *connectionID,
+ LogicalAddress     *entryAddress,
+ Str63               errName ); */
 
 FragPrepare:
 	linkw	%fp,#-84
@@ -2434,6 +2505,11 @@ FragResolveSymbol:
 	lea	%sp@(24),%sp
 	jmp	%a0@
 
+/* FragErr FragRelease(FragContextID contextID, 
+ FragConnectionID    connectionID,
+ Mask                releaseWhich,
+ Boolean             normalTerm ); */
+
 FragRelease:
 	linkw	%fp,#-4
 	moveml	%a2-%a4,%sp@-
@@ -3028,6 +3104,10 @@ FragGetMemRegistryInfo:
 	moveal	%sp@+,%a0
 	addqw	#8,%sp
 	jmp	%a0@
+
+/* FragErr FragGetContextInfo(FragContextID contextID,
+ Boolean          nextContext,
+ ContextInfo     *contextInfo ); */
 
 FragGetContextInfo:
 	linkw	%fp,#-4
@@ -5119,7 +5199,7 @@ sub_10002ee4:
 	subqw	#2,%sp
 	pea	%fp@(-4)
 	subqw	#4,%sp
-	movel	0x2a6,%sp@
+	movel	0x2a6,%sp@		/* LMGetSysZone */
 	movel	%sp@+,%d0
 	movel	%d0,%sp@-
 	clrl	%sp@-
@@ -8607,7 +8687,7 @@ sub_10004efe:
 	moveb	%fp@(28),%d0
 	bnes	.L10005054
 	subqw	#4,%sp
-	movel	0x2a6,%sp@
+	movel	0x2a6,%sp@		/* LMGetSysZone */
 	movel	%sp@+,%d0
 	movel	%d0,%a2@(28)
 	bras	.L10005062
@@ -13471,7 +13551,7 @@ sub_10007e08:
 	cmpal	%a1,%a0
 	beqs	.L10007f48
 	subqw	#4,%sp
-	movel	0x2a6,%sp@
+	movel	0x2a6,%sp@		/* LMGetSysZone */
 	moveal	%sp@+,%a0
 	moveal	%a4@(92),%a1
 	cmpal	%a1,%a0
@@ -14789,7 +14869,7 @@ sub_10008974:
 	moveb	%fp@(-4),%d0
 	bnes	.L10008c40
 	subqw	#4,%sp
-	movel	0x2a6,%sp@
+	movel	0x2a6,%sp@		/* LMGetSysZone */
 	movel	%sp@+,%d0
 	movel	%d0,%fp@(38)
 	movel	%d0,%sp@-
