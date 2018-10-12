@@ -5220,7 +5220,7 @@ sub_10002fc8:
 	movel	%fp@(-12),%sp@-
 	jsr	%pc@(sub_10008e6e)
 	addqw	#6,%sp
-	movel	#1986863136,%d0
+	movel	#1986863136,%d0		/* 'vm  ' */
 	lea	%fp@(-8),%a1
 	_Gestalt
 	movel	%a0,%a1@
@@ -5234,7 +5234,7 @@ sub_10002fc8:
 	lea	%a2@(632),%a2
 	movel	%a2,%fp@(-4)
 	movel	%a2@,%d0
-	oril	#-2147483648,%d0
+	oril	#0x80000000,%d0
 	movel	%d0,%a2@
 
 .L10003074:
@@ -10408,7 +10408,7 @@ sub_1000600a:
 	cmpil	#1248819489,%d0
 	bnes	.L10006116
 	movel	%a2@(4),%d0
-	cmpil	#1885693542,%d0
+	cmpil	#1885693542,%d0		/* 'peff' */
 	bnes	.L10006116
 	movel	%a2@(12),%d0
 	moveq	#1,%d1
@@ -12574,7 +12574,7 @@ local_SearchProc:
 	cmpil	#1248819489,%d0
 	bnes	.L100076d6
 	movel	%a2@(4),%d0
-	cmpil	#1885693542,%d0
+	cmpil	#1885693542,%d0		/* 'peff' */
 	bnes	.L100076d6
 	movel	%a2@(12),%d0
 	moveq	#1,%d1
@@ -12588,7 +12588,7 @@ local_SearchProc:
 	cmpil	#1248819489,%d0
 	bnes	.L100076fe
 	movel	%a2@(4),%d0
-	cmpil	#1885693542,%d0
+	cmpil	#1885693542,%d0		/* 'peff' */
 	bnes	.L100076fe
 	movel	%a2@(12),%d0
 	moveq	#1,%d1
@@ -16265,7 +16265,7 @@ sub_10009844:
 	moveq	#82,%d1
 	cmpl	%d1,%d0
 	beqw	.L10009c14
-	moveq	#88,%d1
+	moveq	#88,%d1		/* 0x58 */
 	cmpl	%d1,%d0
 	beqw	.L10009c42
 	moveq	#90,%d1		/* 0x5a */
@@ -16526,7 +16526,7 @@ sub_10009844:
 	addl	%d0,%a3@+
 	braw	.L10009cee
 
-.L10009c42:
+.L10009c42:				/* 0x58 */
 	subql	#1,%fp@(-152)
 	bnes	.L10009c4e
 	addqw	#2,%a4
@@ -16559,7 +16559,7 @@ sub_10009844:
 	subal	%d0,%a4
 	bras	.L10009cee
 
-.L10009c88:
+.L10009c88:				/* 0x5a */
 	movel	%fp@(-156),%d4
 	moveq	#16,%d3
 	lsrl	%d3,%d4
@@ -16639,7 +16639,7 @@ sub_10009d02:
 	addqw	#8,%sp
 	moveq	#18,%d0
 	movel	%d0,%fp@(-80)
-	movel	#1885693542,%d3
+	movel	#1885693542,%d3			/* 'peff' */
 	movel	%d3,%fp@(-76)
 	lea	%pc@(sub_10009d02),%a0
 	movel	%a0,%fp@(-72)
