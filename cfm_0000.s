@@ -116,6 +116,10 @@
 	_HFSDispatch
 .endm
 
+.macro	_GetOSTrapAddress
+	.short	0xa346
+.endm
+
 .macro	_NewPtrSys
 	.short	0xa51e
 .endm
@@ -153,6 +157,10 @@
 .macro	_GetProcessInformation
 	movew	#58,%sp@-
 	_OSDispatch
+.endm
+
+.macro	_CurResFile
+	.short	0xa994
 .endm
 
 .macro	_SetResLoad
@@ -759,10 +767,10 @@ sub_10000486:
 	movel	%fp@(-68),%a0@
 	movel	%fp@(-68),%sp@-
 	subqw	#4,%sp
-	movew	#-22028,%sp@-
+	movew	#0xa9f4,%sp@-
 	moveq	#1,%d0
 	moveb	%d0,%sp@-
-	jsr	%pc@(sub_10007a36)
+	jsr	%pc@(j_cfm_GetTrapAddress)
 	movel	%sp@+,%d0
 	movel	%d0,%sp@-
 	jsr	%pc@(sub_10000400)
@@ -5131,12 +5139,12 @@ sub_10002ee4:
 sub_10002f4a:
 	linkw	%fp,#-16
 	moveml	%d3/%a2,%sp@-
-	movew	#8287,%fp@(-16)
-	movew	#8799,%fp@(-14)
-	movew	#28673,%fp@(-12)
-	movew	#8832,%fp@(-10)
-	movew	#22671,%fp@(-8)
-	movew	#20176,%fp@(-6)
+	movew	#0x205f,%fp@(-16)
+	movew	#0x225f,%fp@(-14)
+	movew	#0x7001,%fp@(-12)
+	movew	#0x2280,%fp@(-10)
+	movew	#0x588f,%fp@(-8)
+	movew	#0x4ed0,%fp@(-6)
 	clrb	%sp@-
 	moveq	#12,%d0
 	movel	%d0,%sp@-
@@ -10498,7 +10506,7 @@ sub_100061b0:
 	moveml	%d3-%d6/%a2-%a3,%sp@-
 	moveal	%fp@(8),%a3
 	subqw	#2,%sp
-	.short	0xa994
+	_CurResFile
 	movew	%sp@+,%d4
 	jsr	%pc@(sub_10006194)
 	movew	%d0,%d5
@@ -12935,8 +12943,8 @@ sub_10007982:
 	unlk	%fp
 	rts
 
-sub_10007a36:
-	braw	sub_1000a378
+j_cfm_GetTrapAddress:
+	braw	cfm_GetTrapAddress
 
 sub_10007a3a:
 	linkw	%fp,#-108
@@ -14341,7 +14349,7 @@ sub_10008794:
 	linkw	%fp,#0
 	moveml	%d3/%a2,%sp@-
 	subqw	#2,%sp
-	.short	0xa994
+	_CurResFile
 	movew	%sp@+,%d3
 	subqw	#2,%sp
 	movew	0x900,%sp@
@@ -14972,13 +14980,13 @@ sub_10008dc0:
 	movew	#0xa89f,%sp@-
 	moveq	#1,%d0
 	moveb	%d0,%sp@-
-	jsr	%pc@(sub_1000a378)
+	jsr	%pc@(cfm_GetTrapAddress)
 	moveal	%sp@+,%a0
 	moveal	%a0,%a2
 	subqw	#4,%sp
 	movew	#0xa198,%sp@-
 	clrb	%sp@-
-	jsr	%pc@(sub_1000a378)
+	jsr	%pc@(cfm_GetTrapAddress)
 	moveal	%sp@+,%a1
 	moveal	%a2,%a0
 	cmpal	%a1,%a0
@@ -17398,7 +17406,7 @@ sub_1000a36a:
 .L1000a376:
 	jmp	%a1@
 
-sub_1000a378:
+cfm_GetTrapAddress:
 	moveal	%sp@+,%a1
 	moveb	%sp@+,%d1
 	movew	%sp@+,%d0
@@ -17408,7 +17416,7 @@ sub_1000a378:
 	bras	.L1000a388
 
 .L1000a386:
-	.short	0xa346
+	_GetOSTrapAddress
 
 .L1000a388:
 	movel	%a0,%sp@
